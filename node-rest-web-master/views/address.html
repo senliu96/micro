@@ -1,0 +1,122 @@
+<!doctype html>
+<html ng-app="demo">
+	<head>
+		<title>Address Test</title>
+		<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    	<script src = "javascripts/address.js"></script>
+    	<style>
+			table, th, td {
+   		 		border: 1px solid black;
+			}
+		</style>
+	</head>
+
+	<body> 
+		<div ng-controller = "search">
+			<h2><a href="/"> Return </a></h2>
+			<br>
+			<h2>Address Search / Relational Search</h2>
+			<form novalidate class = "simple-form">
+	    		<label> Search Address by Id: <input type = "text" ng-model="id"> </label>
+	    		<input type = "submit" value = "search" ng-click = "submit(id)">
+	    		<input type = "submit" value = "find persons" ng-click = "findPerson(id)">
+			</form>
+			<br>
+			<form novalidate class = "simple-form">
+	    		<label> Search by State: <input type = "text" ng-model="state"> </label>
+	    		<input type = "submit" value = "search" ng-click = "searchByState(state)">
+			</form>
+			<p> Send request to api: {{ myUri }} </p>
+			<table style="width:50%">
+			  	<tr>
+    				<th>Id</th>
+    				<th>Street</th> 
+    				<th>City</th>
+    				<th>State</th>
+    				<th>Zip</th>
+  				</tr>
+  				<tr ng-repeat = "a in addresses">
+					<td align="center">{{ a.Id }}</td>
+					<td align="center">{{ a.Street }}</td>
+					<td align="center">{{ a.City }}</td>
+					<td align="center">{{ a.State }}</td>
+					<td align="center">{{ a.Zip }}</td>
+				</tr>
+			</table>
+			<br>
+			<p> The address has following persons:</p>
+			<table style="width:50%">
+			  	<tr>
+    				<th>Id</th>
+    				<th>FirstName</th> 
+    				<th>LastName</th>
+    				<th>E-mail</th>
+  				</tr>
+  				<tr ng-repeat = "p in persons">
+					<td align="center">{{ p.Id }}</td>
+					<td align="center">{{ p.FirstName }}</td>
+					<td align="center">{{ p.LastName }}</td>
+					<td align="center">{{ p.Email }}</td>
+				</tr>
+			</table>
+		</div>
+		<br>
+
+		<h2>Address Delete</h2>
+		<div ng-controller = "delete">
+			<form novalidate class = "simple-form">
+	    		<label> Delete by Id: <input type = "text" ng-model="id"> </label>
+	    		<input type = "submit" value = "delete" ng-click = "delete(id)">
+			</form>
+			<p> Send request to api: {{ myUri }} </p>
+			<p> Response: {{ responseCode }} </p>
+			<p> SQL returns: {{ affected }} </p>
+		</div>
+		<br>
+		<h2>Address Add</h2>
+		<div ng-controller = "add"> 
+			<form novalidate class = "simple-form">
+				<div>
+	    			<label> Id: <input type = "text" ng-model="address.Id"> </label>
+	    		</div>
+	    		<div>
+	    			<label> Street: <input type = "text" ng-model="address.Street"> </label>
+	    		</div>
+	    		<div>
+	    			<label> City: <input type = "text" ng-model="address.City"> </label>
+	    		</div>
+	    		<div>
+	    			<label> State: <input type = "text" ng-model="address.State"> </label>
+	    		</div>
+	    		<div>
+	    			<label> Zip: <input type = "text" ng-model="address.Zip"> </label>
+	    		</div>
+	    		<div>
+	    			<input type = "submit" value = "add" ng-click = "add(address)">
+	    			<input type = "submit" value = "show all" ng-click = "show()">
+	    		</div>
+			</form>
+			<p> Submitted: {{ data }} </p>
+			<p> Response: {{ responseCode }} </p>
+			<p> SQL returns: {{ affected }} </p>
+			<p> Now we have: </p>
+			<table style="width:50%">
+			  	<tr>
+    				<th>Id</th>
+    				<th>Street</th> 
+    				<th>City</th>
+    				<th>State</th>
+    				<th>Zip</th>
+  				</tr>
+  				<tr ng-repeat = "a in addresses">
+					<td align="center">{{ a.Id }}</td>
+					<td align="center">{{ a.Street }}</td>
+					<td align="center">{{ a.City }}</td>
+					<td align="center">{{ a.State }}</td>
+					<td align="center">{{ a.Zip }}</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+
+</html>
