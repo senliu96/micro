@@ -18,7 +18,7 @@ var address = {
     },
 
     getAddressById : function(id, callback){
-        return db.query("select * from address where Id=?",[id],callback);
+        return db.query("select * from address where Aid=?",[id],callback);
     },
 
     addAddress : function(address,callback){

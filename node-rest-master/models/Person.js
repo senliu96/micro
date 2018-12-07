@@ -18,20 +18,20 @@ var Person = {
 	},
 
 	getPersonById : function(id, callback){
-		return db.query("select * from person where Id=?",[id],callback);
+		return db.query("select * from person where Pid=?",[id],callback);
 	},
 
 	addPerson : function(Person,callback){
 		console.log(Person)
-	 	return db.query("Insert into person (`Id`, `FirstName`, `LastName`, `Email`) values(?,?,?,?)",[Person.Id,Person.FirstName, Person.LastName, Person.Email],callback);
+	 	return db.query("Insert into person (`Pid`, `FirstName`, `LastName`, `Email`) values(?,?,?,?)",[Person.Id,Person.FirstName, Person.LastName, Person.Email],callback);
 	},
 
 	deletePerson : function(id, callback){
-		return db.query("delete from person where Id=?",[id],callback);
+		return db.query("delete from person where Pid=?",[id],callback);
 	},
 
 	updatePerson : function(id, Person, callback){
-		return db.query("update person set Name=?,Country=? where Id=?",[Person.Name,Person.Country,id],callback);
+		return db.query("update person set Name=?,Country=? where Pid=?",[Person.Name,Person.Country,id],callback);
 	}
  
 };
